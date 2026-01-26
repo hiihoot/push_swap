@@ -9,10 +9,9 @@
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-void free_table(char **str)
+void	free_table(char **str)
 {
 	int	i;
 
@@ -27,8 +26,7 @@ void free_table(char **str)
 	free(str);
 }
 
-
-void free_stack(t_node **stack)
+void	free_stack(t_node **stack)
 {
 	t_node	*curr;
 	t_node	*tmp;
@@ -47,8 +45,7 @@ void free_stack(t_node **stack)
 	*stack = NULL;
 }
 
-
-void exit_err(t_node **stack, char **args, int print)
+void	exit_err(t_node **stack, char **args, int print)
 {
 	if (stack && *stack)
 		free_stack(stack);
@@ -58,4 +55,3 @@ void exit_err(t_node **stack, char **args, int print)
 		write(2, "Error\n", 6);
 	exit(1);
 }
-

@@ -12,41 +12,40 @@
 
 #include "push_swap.h"
 
-int is_sorted(t_node *stack)
+int	is_sorted(t_node *stack)
 {
-    t_node *tmp;
+	t_node	*tmp;
 
-    if (!stack)
-        return (1);
-
-    tmp = stack;
-    while(tmp->next != stack)
-    { 
-        if (tmp->value > tmp->next->value)
-            return 0;
-        tmp = tmp->next;
-    }
-
-    return 1;
+	if (!stack)
+		return (1);
+	tmp = stack;
+	while (tmp->next != stack)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
-int stack_len(t_node *stack)
+int	stack_len(t_node *stack)
 {
-    int i;
-    t_node *node;
+	int		i;
+	t_node	*node;
 
-    i = 0;
-    node = stack;
-    while (1)
-    {
-        i++;
-        node = node->next;
-        if (node == stack)
-            break;
-    }
-    return (i);
+	if (!stack)
+		return (0);
+	i = 0;
+	node = stack;
+	while (1)
+	{
+		i++;
+		node = node->next;
+		if (node == stack)
+			break ;
+	}
+	return (i);
 }
-
 
 t_node	*find_min(t_node *stack)
 {
@@ -66,45 +65,45 @@ t_node	*find_min(t_node *stack)
 	return (min_node);
 }
 
-int get_pos(t_node *stack, t_node *target)
+int	get_pos(t_node *stack, t_node *target)
 {
-    int i;
-    t_node *curr;
+	int		i;
+	t_node	*curr;
 
-    i = 0;
-    curr = stack;
-    while (curr != target)
-    {
-        i++;
-        curr = curr->next;
-        if (curr == stack)
-            break;
-    }
-    return (i);
+	i = 0;
+	curr = stack;
+	while (curr != target)
+	{
+		i++;
+		curr = curr->next;
+		if (curr == stack)
+			break ;
+	}
+	return (i);
 }
 
 void	index_stack(t_node *stack)
 {
 	t_node	*curr;
-	t_node	*compare;
-	int		index;
+	t_node	*comp;
+	int		idx;
 
 	curr = stack;
-	while (1)
+	while (curr)
 	{
-		index = 0;
-		compare = stack;
+		idx = 0;
+		comp = stack;
 		while (1)
 		{
-			if (compare->value < curr->value)
-				index++;
-			compare = compare->next;
-			if (compare == stack)
-				break;
+			if (comp->value < curr->value)
+				idx++;
+			comp = comp->next;
+			if (comp == stack)
+				break ;
 		}
-		curr->index = index;
+		curr->index = idx;
 		curr = curr->next;
 		if (curr == stack)
-			break;
+			break ;
 	}
 }

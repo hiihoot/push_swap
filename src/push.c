@@ -12,44 +12,50 @@
 
 #include "push_swap.h"
 
-static void push(t_node **src, t_node **dst)
+static t_node	*detach_node(t_node **src)
 {
-	t_node	*node_to_push;
+	t_node	*node;
 
-	if (!src || !*src)
-		return ;
-	node_to_push = *src;
-	if (node_to_push->next == node_to_push)
+	node = *src;
+	if (node->next == node)
 		*src = NULL;
 	else
 	{
-		*src = node_to_push->next;
-		node_to_push->prev->next = node_to_push->next;
-		node_to_push->next->prev = node_to_push->prev;
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+		*src = node->next;
 	}
+	node->next = node;
+	node->prev = node;
+	return (node);
+}
+
+static void	push(t_node **src, t_node **dst)
+{
+	t_node	*node;
+
+	if (!src || !*src)
+		return ;
+	node = detach_node(src);
 	if (!*dst)
-	{
-		*dst = node_to_push;
-		node_to_push->next = node_to_push;
-		node_to_push->prev = node_to_push;
-	}
+		*dst = node;
 	else
 	{
-		node_to_push->next = *dst;
-		node_to_push->prev = (*dst)->prev;
-		(*dst)->prev->next = node_to_push;
-		(*dst)->prev = node_to_push;
-		*dst = node_to_push;
+		node->next = *dst;
+		node->prev = (*dst)->prev;
+		node->prev->next = node;
+		(*dst)->prev = node;
+		*dst = node;
 	}
 }
 
-void pa(t_node **stack_a, t_node **stack_b)
+void	pa(t_node **stack_a, t_node **stack_b)
 {
 	push(stack_b, stack_a);
 	write(1, "pa\n", 3);
 }
 
-void pb(t_node **stack_a, t_node **stack_b)
+void	pb(t_node **stack_a, t_node **stack_b)
 {
 	push(stack_a, stack_b);
 	write(1, "pb\n", 3);

@@ -9,28 +9,31 @@
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
-
-static void check_sort(t_node **stack, t_node **stack2)
+static void	check_sort(t_node **stack, t_node **stack2)
 {
-    if (stack_len(*stack) == 2)
-        sa(stack, 1);
-    else if (stack_len(*stack) == 3)
-        sort_three(stack);
-    else if (stack_len(*stack) <= 5)
-        sort_five(stack, stack2);
-    else
-    {
-        index_stack(*stack);
-        butterfly_sort(stack, stack2, (stack_len(*stack) <= 100 ? 15 : 35));
-        push_back_to_a(stack, stack2);
-    }
+	int	len;
+
+	len = stack_len(*stack);
+	if (len == 2)
+		sa(stack, 1);
+	else if (len == 3)
+		sort_three(stack);
+	else if (len <= 5)
+		sort_five(stack, stack2);
+	else
+	{
+		index_stack(*stack);
+		if (len <= 100)
+			butterfly_sort(stack, stack2, 15);
+		else
+			butterfly_sort(stack, stack2, 35);
+		push_back_to_a(stack, stack2);
+	}
 }
 
-
-static int is_only_spaces(char *str)
+static int	is_only_spaces(char *str)
 {
 	int	i;
 
@@ -46,84 +49,53 @@ static int is_only_spaces(char *str)
 	return (1);
 }
 
-
-void print_stack(t_node *stack, char *w)
+char	**get_input(int ac, char **av)
 {
-    t_node *curr;
+	char	*str;
+	char	*tmp;
+	char	**res;
+	int		i;
 
-    if (!stack)
-    {
-        printf("Stack is empty!\n");
-        return;
-    }
-    curr = stack;
-    printf("--- Stack %s ---\n", w);
-    while (1)
-    {
-        printf("Val: %d\n", curr->value);
-        curr = curr->next;
-        if (curr == stack)
-            break;
-    }
-    printf("---------------\n");
+	i = 0;
+	str = ft_strdup("");
+	while (++i < ac)
+	{
+		if (av[i][0] == '\0' || is_only_spaces(av[i]))
+		{
+			free(str);
+			exit_err(NULL, NULL, 1);
+		}
+		tmp = ft_strjoin(str, av[i]);
+		free(str);
+		str = ft_strjoin(tmp, " ");
+		free(tmp);
+	}
+	res = ft_split(str, ' ');
+	free(str);
+	return (res);
 }
 
-
-char **get_input(int ac, char **av)
+int	main(int ac, char **av)
 {
-    char *str;
-    char *tmp;
-    char **res;
-    int i;
+	t_node	*stack_a;
+	t_node	*stack_b;
+	char	**args;
 
-    i = 1;
-    str = ft_strdup("");
-    while (i < ac)
-    {
-        if (av[i][0] == '\0' || is_only_spaces(av[i]))
-        {
-            free(str);
-            exit_err(NULL, NULL, 1);
-        }
-        tmp = str;
-        str = ft_strjoin(tmp, av[i]);
-        free(tmp);
-        tmp = str;
-        str = ft_strjoin(tmp, " ");
-        free(tmp);
-        i++;
-    }
-    res = ft_split(str, ' ');
-    free(str);
-    return (res);
+	stack_a = NULL;
+	stack_b = NULL;
+	if (ac == 1)
+		return (0);
+	args = get_input(ac, av);
+	if (!args || !args[0])
+		exit_err(NULL, args, 1);
+	if (!parse_to_list(&stack_a, args))
+		exit_err(&stack_a, args, 1);
+	if (check_dup(stack_a))
+		exit_err(&stack_a, args, 1);
+	if (!is_sorted(stack_a))
+		check_sort(&stack_a, &stack_b);
+	free_table(args);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
+	return (0);
 }
-
-
-int main(int ac, char **av)
-{
-    t_node *stack_a;
-    t_node *stack_b;
-    char **args;
-
-    stack_a = NULL;
-    stack_b = NULL;
-
-    if (ac == 1)
-        return 0;
-    args = get_input(ac, av);
-    if (!args)
-        exit_err(NULL, NULL, 1);
-    if (!parse_to_list(&stack_a, args))
-        exit_err(&stack_a, args, 1);
-    if (check_dup(stack_a))
-        exit_err(&stack_a, args, 1);
-    if (!is_sorted(stack_a))
-        check_sort(&stack_a, &stack_b);
-    else
-        exit_err(&stack_a, args, 0);
-   
-    free_table(args);
-    free_stack(&stack_a);
-    free_stack(&stack_b);
-}
-

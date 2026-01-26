@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 14:41:34 by sait-mou          #+#    #+#             */
-/*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
+/*   Created: 2026/01/26 20:53:23 by sait-mou          #+#    #+#             */
+/*   Updated: 2026/01/26 20:53:27 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -39,9 +39,8 @@ t_node	*find_max(t_node *stack)
 	t_node	*max_node;
 	t_node	*curr;
 
-    if (!stack)
+	if (!stack)
 		return (NULL);
-    
 	max_node = stack;
 	curr = stack->next;
 	while (curr != stack)
@@ -61,11 +60,9 @@ void	push_back_to_a(t_node **stack_a, t_node **stack_b)
 
 	while (*stack_b)
 	{
-		max = find_max(*stack_b); // Finds node with highest index
+		max = find_max(*stack_b);
 		len = stack_len(*stack_b);
 		pos = get_pos(*stack_b, max);
-		
-		// Move the max to the top using the shortest path
 		if (pos <= len / 2)
 		{
 			while (*stack_b != max)
