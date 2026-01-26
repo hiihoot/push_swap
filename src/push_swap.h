@@ -68,7 +68,6 @@ void	ss(t_node **stack_a, t_node **stack_b);
 //helpers
 int is_sorted(t_node *stack);
 int stack_len(t_node *stack);
-void sort_three(t_node **stack_a);
 int get_pos(t_node *stack, t_node *target);
 t_node	*find_min(t_node *stack);
 
