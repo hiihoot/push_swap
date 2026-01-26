@@ -60,8 +60,15 @@ void rra(t_node **stack_a, int print);
 void rrb(t_node **stack_b, int print);
 void rrr(t_node **stack_a, t_node **stack_b);
 
+void	sa(t_node **stack_a, int print);
+void	sb(t_node **stack_b, int print);
+void	ss(t_node **stack_a, t_node **stack_b);
+
+
 //helpers
 int is_sorted(t_node *stack);
+int stack_len(t_node *stack);
+void sort_three(t_node **stack_a);
 
 
 

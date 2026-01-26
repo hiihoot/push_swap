@@ -13,6 +13,15 @@
 #include "push_swap.h"
 
 
+static void check_sort(t_node *stack)
+{
+    if (stack_len(stack) == 2)
+        sa(&stack, 1);
+    else if (stack_len(stack) == 3)
+        sort_three(&stack);
+}
+
+
 static int is_only_spaces(char *str)
 {
 	int	i;
@@ -100,7 +109,9 @@ int main(int ac, char **av)
         exit_err(&stack_a, args, 1);
     if (check_dup(stack_a))
         exit_err(&stack_a, args, 1);
-    if (is_sorted(stack_a))
+    if (!is_sorted(stack_a))
+        check_sort(stack_a);
+    else
         exit_err(&stack_a, args, 0);
    
     free_table(args);
