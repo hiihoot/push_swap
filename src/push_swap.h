@@ -6,7 +6,7 @@
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 08:49:13 by sait-mou          #+#    #+#             */
-/*   Updated: 2026/01/25 10:46:43 by sait-mou         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_node
 {
     int             value;
-    int             index; // Very useful for later!
+    int             index;
     struct s_node   *next;
     struct s_node   *prev;
 } t_node;
@@ -70,9 +70,13 @@ int is_sorted(t_node *stack);
 int stack_len(t_node *stack);
 int get_pos(t_node *stack, t_node *target);
 t_node	*find_min(t_node *stack);
+void	index_stack(t_node *stack);
 
 
 void sort_five(t_node **stack_a, t_node **stack_b);
+void sort_three(t_node **stack_a);
+void butterfly_sort(t_node **stack_a, t_node **stack_b, int range);
+void push_back_to_a(t_node **stack_a, t_node **stack_b);
 
 
 

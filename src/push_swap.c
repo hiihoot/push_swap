@@ -6,21 +6,27 @@
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 08:47:37 by sait-mou          #+#    #+#             */
-/*   Updated: 2026/01/25 10:46:43 by sait-mou         ###   ########.fr       */
+/*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-static void check_sort(t_node *stack, t_node *stack2)
+static void check_sort(t_node **stack, t_node **stack2)
 {
-    if (stack_len(stack) == 2)
-        sa(&stack, 1);
-    else if (stack_len(stack) == 3)
-        sort_three(&stack);
-    else if (stack_len(stack) <= 5)
-        sort_five(&stack, &stack2);
+    if (stack_len(*stack) == 2)
+        sa(stack, 1);
+    else if (stack_len(*stack) == 3)
+        sort_three(stack);
+    else if (stack_len(*stack) <= 5)
+        sort_five(stack, stack2);
+    else
+    {
+        index_stack(*stack);
+        butterfly_sort(stack, stack2, (stack_len(*stack) <= 100 ? 15 : 35));
+        push_back_to_a(stack, stack2);
+    }
 }
 
 
@@ -112,7 +118,7 @@ int main(int ac, char **av)
     if (check_dup(stack_a))
         exit_err(&stack_a, args, 1);
     if (!is_sorted(stack_a))
-        check_sort(stack_a, stack_b);
+        check_sort(&stack_a, &stack_b);
     else
         exit_err(&stack_a, args, 0);
    
