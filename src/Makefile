@@ -6,7 +6,7 @@ CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 SRCS        = push_swap.c free.c parsing.c ft_bzero.c ft_calloc.c \
               ft_memset.c ft_split.c ft_strjoin.c ft_strlcpy.c ft_strlen.c \
-			  ft_strdup.c rev_rotate.c rotate.c push.c utils.c swap.c
+			  ft_strdup.c rev_rotate.c rotate.c push.c utils.c swap.c sort_five.c
 OBJS        = $(SRCS:.c=.o)
 
 all: $(NAME)

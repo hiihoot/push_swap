@@ -13,12 +13,14 @@
 #include "push_swap.h"
 
 
-static void check_sort(t_node *stack)
+static void check_sort(t_node *stack, t_node *stack2)
 {
     if (stack_len(stack) == 2)
         sa(&stack, 1);
     else if (stack_len(stack) == 3)
         sort_three(&stack);
+    else if (stack_len(stack) <= 5)
+        sort_five(&stack, &stack2);
 }
 
 
@@ -94,11 +96,11 @@ char **get_input(int ac, char **av)
 int main(int ac, char **av)
 {
     t_node *stack_a;
-    // t_node *stack_b;
+    t_node *stack_b;
     char **args;
 
     stack_a = NULL;
-    // stack_b = NULL;
+    stack_b = NULL;
 
     if (ac == 1)
         return 0;
@@ -110,11 +112,12 @@ int main(int ac, char **av)
     if (check_dup(stack_a))
         exit_err(&stack_a, args, 1);
     if (!is_sorted(stack_a))
-        check_sort(stack_a);
+        check_sort(stack_a, stack_b);
     else
         exit_err(&stack_a, args, 0);
    
     free_table(args);
     free_stack(&stack_a);
+    free_stack(&stack_b);
 }
 

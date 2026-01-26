@@ -70,3 +70,36 @@ void sort_three(t_node **stack_a)
     else if (a < b && b > c && a > c)    // Case: 2 3 1
         rra(stack_a, 1);
 }
+
+t_node	*find_min(t_node *stack)
+{
+	t_node	*min_node;
+	t_node	*curr;
+
+	if (!stack)
+		return (NULL);
+	min_node = stack;
+	curr = stack->next;
+	while (curr != stack)
+	{
+		if (curr->value < min_node->value)
+			min_node = curr;
+		curr = curr->next;
+	}
+	return (min_node);
+}
+
+int get_pos(t_node *stack, t_node *target)
+{
+    int i;
+    t_node *curr;
+
+    i = 0;
+    curr = stack;
+    while (curr != target)
+    {
+        i++;
+        curr = curr->next;
+    }
+    return (i);
+}
