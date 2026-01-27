@@ -58,9 +58,28 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 			while (*stack_a != min)
 				rra(stack_a, 1);
 		}
-		pb(stack_a, stack_b);
+		if (!is_sorted(*stack_a))
+			pb(stack_a, stack_b);
+		else
+			break ;
 	}
 	sort_three(stack_a);
 	while (*stack_b)
 		pa(stack_a, stack_b);
+}
+
+int	all_sort_except_one(t_node *stack_a)
+{
+	t_node	*node;
+	int		size;
+
+	size = stack_len(stack_a);
+	node = stack_a;
+	while (size--)
+	{
+		if (node->value > node->next->value && size != 1)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }

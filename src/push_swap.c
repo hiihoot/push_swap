@@ -18,6 +18,8 @@ static void	check_sort(t_node **stack, t_node **stack2)
 	len = stack_len(*stack);
 	if (len == 2)
 		sa(stack, 1);
+	else if (all_sort_except_one(*stack))
+		rra(stack, 1);
 	else if (len == 3)
 		sort_three(stack);
 	else if (len <= 5)

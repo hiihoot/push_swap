@@ -14,7 +14,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -63,6 +62,7 @@ int		stack_len(t_node *stack);
 int		get_pos(t_node *stack, t_node *target);
 t_node	*find_min(t_node *stack);
 void	index_stack(t_node *stack);
+int		all_sort_except_one(t_node *stack_a);
 
 /* algorithm */
 void	sort_five(t_node **stack_a, t_node **stack_b);
