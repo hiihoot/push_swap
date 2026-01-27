@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 09:07:39 by sait-mou          #+#    #+#             */
-/*   Updated: 2026/01/25 10:46:43 by sait-mou         ###   ########.fr       */
+/*   Created: 2026/01/25 10:46:41 by sait-mou          #+#    #+#             */
+/*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
 
-void	*ft_calloc(size_t n, size_t size)
+#include "../include/push_swap.h"
+
+char	*ft_strdup(const char *str)
 {
-	void	*ptr;
+	char	*dup;
+	int		i;
 
-	if (!n || !size)
-		return (malloc(0));
-	ptr = malloc(n * size);
-	if (!ptr)
+	i = 0;
+	while (str[i])
+		i++;
+	dup = (char *)malloc(sizeof(char) * (i + 1));
+	if (dup == NULL)
 		return (NULL);
-	ft_bzero(ptr, n * size);
-	return (ptr);
+	i = 0;
+	while (str[i])
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }

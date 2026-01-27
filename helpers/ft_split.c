@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 static	void	*ft_free(char **arr, int count)
 {

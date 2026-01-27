@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 10:46:41 by sait-mou          #+#    #+#             */
+/*   Created: 2026/01/26 10:47:22 by sait-mou          #+#    #+#             */
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-char	*ft_strdup(const char *str)
+static void	swap(t_node *stack)
 {
-	char	*dup;
-	int		i;
+	int	tmp;
 
-	i = 0;
-	while (str[i])
-		i++;
-	dup = (char *)malloc(sizeof(char) * (i + 1));
-	if (dup == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		dup[i] = str[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
+	if (!stack || stack->next == stack)
+		return ;
+	tmp = stack->value;
+	stack->value = stack->next->value;
+	stack->next->value = tmp;
+}
+
+void	sa(t_node **stack_a, int print)
+{
+	swap(*stack_a);
+	if (print)
+		write(1, "sa\n", 3);
+}
+
+void	sb(t_node **stack_b, int print)
+{
+	swap(*stack_b);
+	if (print)
+		write(1, "sb\n", 3);
+}
+
+void	ss(t_node **stack_a, t_node **stack_b)
+{
+	swap(*stack_a);
+	swap(*stack_b);
+	write(1, "ss\n", 3);
 }

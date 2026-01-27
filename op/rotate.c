@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 10:47:22 by sait-mou          #+#    #+#             */
+/*   Created: 2026/01/25 13:23:30 by sait-mou          #+#    #+#             */
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-static void	swap(t_node *stack)
+static void	rotate(t_node **stack)
 {
-	int	tmp;
-
-	if (!stack || stack->next == stack)
-		return ;
-	tmp = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = tmp;
+	if (*stack && (*stack)->next != *stack)
+		*stack = (*stack)->next;
 }
 
-void	sa(t_node **stack_a, int print)
+void	ra(t_node **stack_a, int print)
 {
-	swap(*stack_a);
+	rotate(stack_a);
 	if (print)
-		write(1, "sa\n", 3);
+		write(1, "ra\n", 3);
 }
 
-void	sb(t_node **stack_b, int print)
+void	rb(t_node **stack_b, int print)
 {
-	swap(*stack_b);
+	rotate(stack_b);
 	if (print)
-		write(1, "sb\n", 3);
+		write(1, "rb\n", 3);
 }
 
-void	ss(t_node **stack_a, t_node **stack_b)
+void	rr(t_node **stack_a, t_node **stack_b)
 {
-	swap(*stack_a);
-	swap(*stack_b);
-	write(1, "ss\n", 3);
+	ra(stack_a, 0);
+	rb(stack_b, 0);
+	write(1, "rr\n", 3);
 }

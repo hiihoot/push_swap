@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 static void	check_sort(t_node **stack, t_node **stack2)
 {

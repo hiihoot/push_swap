@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/26 14:41:37 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 static long	ft_atoi_ps(const char *str, t_node **stack, char **args)
 {

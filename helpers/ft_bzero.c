@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sait-mou <sait-mou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/25 09:06:42 by sait-mou          #+#    #+#             */
+/*   Created: 2026/01/25 09:10:44 by sait-mou          #+#    #+#             */
 /*   Updated: 2026/01/25 10:46:43 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	ft_memset(s, '\0', n);
 }

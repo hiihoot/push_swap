@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/26 20:53:27 by sait-mou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "../include/push_swap.h"
 
 void	butterfly_sort(t_node **stack_a, t_node **stack_b, int range)
 {
