@@ -86,8 +86,6 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	args = get_input(ac, av);
-	if (!args || !args[0])
-		exit_err(NULL, args, 1);
 	if (!parse_to_list(&stack_a, args))
 		exit_err(&stack_a, args, 1);
 	if (check_dup(stack_a))
