@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "checker_bonus.h"
 
 static void	rev_rotate(t_node **stack)
 {

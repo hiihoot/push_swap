@@ -59,13 +59,13 @@ void	sort_five(t_node **stack_a, t_node **stack_b)
 				rra(stack_a, 1);
 		}
 		if (!is_sorted(*stack_a))
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 		else
 			break ;
 	}
 	sort_three(stack_a);
 	while (*stack_b)
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 1);
 }
 
 int	all_sort_except_one(t_node *stack_a)

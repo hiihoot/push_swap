@@ -20,13 +20,13 @@ void	butterfly_sort(t_node **stack_a, t_node **stack_b, int range)
 	{
 		if ((*stack_a)->index <= i)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 			rb(stack_b, 1);
 			i++;
 		}
 		else if ((*stack_a)->index <= i + range)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 			i++;
 		}
 		else
@@ -73,6 +73,6 @@ void	push_back_to_a(t_node **stack_a, t_node **stack_b)
 			while (*stack_b != max)
 				rrb(stack_b, 1);
 		}
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 1);
 	}
 }

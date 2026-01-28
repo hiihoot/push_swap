@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "checker_bonus.h"
 
 static t_node	*detach_node(t_node **src)
 {
